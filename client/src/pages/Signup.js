@@ -7,7 +7,7 @@ const Login = ({ setPage }) => {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState();
 
-  const url = "http://localhost:8000/api/signin";
+  const url = "http://localhost:8000/api/signup";
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,11 +23,10 @@ const Login = ({ setPage }) => {
       },
     })
       .then((res) => {
-        localStorage.setItem("accessToken", res.data.token);
-        localStorage.setItem("userId", res.data.user._id);
-        window.location.reload();
+        setPage("login");
       })
       .catch((err) => {
+        console.log(err);
         setErr(err.response.data.error);
       })
       .finally(() => {
@@ -42,7 +41,7 @@ const Login = ({ setPage }) => {
         className="container"
         style={{ maxWidth: "330px" }}
       >
-        <h1 className="h3 mb-3 fw-normal">Login</h1>
+        <h1 className="h3 mb-3 fw-normal">Create Account</h1>
         {err && <p>{err}</p>}
         <div className="form-floating">
           <input
@@ -84,15 +83,15 @@ const Login = ({ setPage }) => {
         </button>
       </form>
       <p className="mt-2">
-        Not a user yet? {"  "}
+        Already a user? {"  "}
         <span
           className="link-primary"
           style={{ cursor: "pointer" }}
           onClick={() => {
-            setPage("signup");
+            setPage("login");
           }}
         >
-          Signup Instead
+          Login Instead
         </span>
       </p>
     </div>

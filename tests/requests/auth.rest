@@ -2,8 +2,7 @@ POST http://localhost:8000/api/signup
 Content-Type: application/json
 
 {
-  "name": "Test1",
-  "email": "test1@example.com",
+  "email": "tes21@example.com",
   "password": "123456"
 }
 
@@ -13,7 +12,7 @@ POST http://localhost:8000/api/signin
 Content-Type: application/json
 
 {
-  "email": "test1@example.com",
+  "email": "test2@example.com",
   "password": "123456"
 }
 

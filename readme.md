@@ -23,27 +23,3 @@
    - TOKEN_SECRET=\<anything_random>
 3. Then open terminal in the folder and run `yarn dev`
 4. The App will run on `http://localhost:3000`
-
-### Side Note (This will probably be removed in a few hours):
-
-The app currently does not have signup feature so you would have to add a user manually with the following properties:
-
-```
-{
-  email: string,
-  password: string<hashed with the token_secret>
-}
-```
-
-OR (Preffered)
-
-- Open postman or anything similar
-- Send the following POST request
-
-```
-POST http://localhost:8000/api/signup
-body: {
-  "email": "test1@example.com",
-  "password": "123456"
-}
-```

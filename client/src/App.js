@@ -5,10 +5,12 @@ import TaskList from "./components/TaskList";
 import Login from "./pages/Login";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Signup from "./pages/Signup";
 
 function App() {
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -17,6 +19,7 @@ function App() {
     if (!token) {
       setLoading(false);
       setLogged(false);
+      setCurrentPage("login");
       return;
     }
 
@@ -48,7 +51,10 @@ function App() {
 
   if (loading) return <>Loading...</>;
 
-  if (!logged) return <Login />;
+  if (!logged) {
+    if (currentPage === "login") return <Login setPage={setCurrentPage} />;
+    else return <Signup setPage={setCurrentPage} />;
+  }
 
   return (
     <div className="py-3 m-auto" style={{ maxWidth: "500px" }}>

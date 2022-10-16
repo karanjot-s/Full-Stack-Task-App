@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ userId: req.user.userId });
 
     res.status(200).json({
       success: true,
@@ -43,7 +43,7 @@ exports.getOne = async (req, res) => {
 
     const task = await Task.findById(id);
 
-    if (!task) {
+    if (!task || task.userId !== req.user.userId) {
       return res.status(404).json({ error: "Task not found" });
     }
 
